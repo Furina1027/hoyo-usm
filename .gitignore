@@ -1,0 +1,19 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+.venv/
+
+# 导出产物（M2 起）
+export/
+*.mp4.bad
+*.part
+config/
+server.log
+web/node_modules/
+packaging/_cache/
+packaging/build/
+packaging/dist/
+release/

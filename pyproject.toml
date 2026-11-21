@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hoyo-usm"
+version = "1.0.0"
+description = "无损解密并导出原神 / 星穹铁道 / 绝区零 USM 过场动画（CLI）"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=1.24",
+    "pycryptodome>=3.17",
+    "cricodecs>=1.2",
+]
+
+[project.optional-dependencies]
+gui = [
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.29",
+    "pywebview>=5.0",
+]
+
+[project.scripts]
+hoyo-usm = "hoyo_usm.cli:main"
+
+[tool.setuptools]
+packages = ["hoyo_usm", "hoyo_usm.audio"]
