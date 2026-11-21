@@ -6,6 +6,29 @@ Losslessly decrypts and exports cutscenes (CRI USM containers) from **Genshin Im
 Honkai: Star Rail (hsr) / Zenless Zone Zero (zzz)**. Ships as a desktop GUI and a CLI.
 Reads only game files already on your machine and runs fully offline.
 
+## Key coverage
+
+Key coverage over historical USM videos (counted by comparing **every** USM filename that ever
+appeared in each game's history — including files removed from the game directory — against the
+key store):
+
+| Game | Latest version | Videos | Keys | Coverage |
+| --- | --- | ---: | ---: | ---: |
+| Genshin Impact | 7.2.0 | 360 | 360 | 100% |
+| Honkai: Star Rail | 4.7.0 | 1270 | 1262 | 99.4% |
+| Zenless Zone Zero | 3.3.0 | 2623 | 2623 | 100% |
+| **Total** | — | **4253** | **4245** | **99.8%** |
+
+## Portable build (recommended)
+
+`release/hoyo-usm-gui-portable-<version>.zip` is a portable, install-free build
+(produced by `python packaging/build_release.py`; ffmpeg and the key snapshot are bundled):
+
+1. Extract anywhere and run `hoyo-usm-gui.exe`
+2. Settings and exports live in the `config/` folder next to the exe — delete the folder to fully uninstall
+3. Requires the WebView2 runtime (built into Windows 11, usually present on Windows 10)
+4. Optional flags: `--browser` (browser mode), `--port=8788`, `--no-open` (serve without opening a window)
+
 ## What it does
 
 - Parses USM containers; supports both cipher generations (legacy feedback XOR mask / AES-128-CTR)
@@ -57,11 +80,13 @@ hoyo-usm gui
 - **Settings**: game folders / ffmpeg / output (native browse dialogs + validation), key-store update & rollback,
   dark / light / system theme
 
+
 ## Keys
 
 A key snapshot ships with the repository in `keys/` (provenance and stats in `keys/PROVENANCE.md`);
 runtime needs no external services. After game updates you can pull the latest snapshot from an
 update URL in the GUI settings (auto-backed-up, rollback supported).
+
 
 ## Disclaimer
 
