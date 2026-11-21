@@ -6,6 +6,16 @@ Losslessly decrypts and exports cutscenes (CRI USM containers) from **Genshin Im
 Honkai: Star Rail (hsr) / Zenless Zone Zero (zzz)**. Ships as a desktop GUI and a CLI.
 Reads only game files already on your machine and runs fully offline.
 
+## Portable build (recommended)
+
+`release/hoyo-usm-gui-portable-<version>.zip` is a portable, install-free build
+(produced by `python packaging/build_release.py`; ffmpeg and the key snapshot are bundled):
+
+1. Extract anywhere and run `hoyo-usm-gui.exe`
+2. Settings and exports live in the `config/` folder next to the exe — delete the folder to fully uninstall
+3. Requires the WebView2 runtime (built into Windows 11, usually present on Windows 10)
+4. Optional flags: `--browser` (browser mode), `--port=8788`, `--no-open` (serve without opening a window)
+
 ## What it does
 
 - Parses USM containers; supports both cipher generations (legacy feedback XOR mask / AES-128-CTR)
@@ -56,6 +66,7 @@ hoyo-usm gui
 - **External files**: drag files or folders into the window; games and keys are identified automatically
 - **Settings**: game folders / ffmpeg / output (native browse dialogs + validation), key-store update & rollback,
   dark / light / system theme
+
 
 ## Keys
 
