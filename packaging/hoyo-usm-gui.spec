@@ -22,6 +22,8 @@ datas = [
     (str(DIST_WEB), "hoyo_usm/gui/dist"),
     (str(KEYS), "keys"),
     (str(ROOT / "packaging" / "appicon.png"), "."),
+    # pywebview/WinForms 的窗口图标只认 ICO，PNG 只留作其它后端备用
+    (str(ROOT / "packaging" / "appicon.ico"), "."),
 ]
 binaries = []
 hiddenimports = [

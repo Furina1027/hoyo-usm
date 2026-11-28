@@ -20,15 +20,25 @@ from .server import create_app
 
 
 def _icon_path() -> Path | None:
-    """窗口图标（png）：随包 appicon.png，源码运行取仓库 packaging/。"""
+    """窗口图标：优先 ICO（pywebview/WinForms 只认 .ico），再回退 PNG。
+
+    随包资源在 _MEIPASS / exe 同目录，源码运行取仓库 packaging/。
+    """
+    names = ("appicon.ico", "appicon.png")
     if getattr(sys, "frozen", False):
-        for base in (Path(getattr(sys, "_MEIPASS", "")), Path(sys.executable).resolve().parent):
-            p = base / "appicon.png"
-            if p.is_file():
-                return p
+        bases = (Path(getattr(sys, "_MEIPASS", "")), Path(sys.executable).resolve().parent)
+        for base in bases:
+            for name in names:
+                p = base / name
+                if p.is_file():
+                    return p
         return None
-    p = Path(__file__).resolve().parents[2] / "packaging" / "appicon.png"
-    return p if p.is_file() else None
+    packaging = Path(__file__).resolve().parents[2] / "packaging"
+    for name in names:
+        p = packaging / name
+        if p.is_file():
+            return p
+    return None
 
 
 def _window():
